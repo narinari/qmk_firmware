@@ -42,7 +42,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * DIODE_DIRECTION: ROW = Anode (+), COL = Cathode (-, marked on diode)
  *
 */
-#define MATRIX_ROW_PINS { E2, C7, C6, B6, B5 }
+#define MATRIX_ROW_PINS { E2, C7, C6, B6, B4 }
 #define MATRIX_COL_PINS { F0, F1, F4, F5, F6, F7 }
 #define UNUSED_PINS
 
@@ -60,6 +60,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* Key Light support */
 #define KEYLED_ENABLE
+
+#define TAPPING_TERM 200
 
 /*
  * Force NKRO

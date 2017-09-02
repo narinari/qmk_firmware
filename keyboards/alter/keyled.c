@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 uint8_t Buffer[MATRIX_ROWS][MATRIX_COLS][3]={} ;
 uint8_t Iref = 0 ;
+uint8_t Iref_bak = 0 ;
 
 
 // Fill all with the same color
@@ -133,6 +134,21 @@ void keyled_down_iref(uint8_t val) {
 	keyled_set_iref(Iref);
 }
 
+void keyled_off_iref(void) {
+	Iref_bak =	Iref;
+	keyled_set_iref(0);
+}
+
+void keyled_on_iref(void) {
+	if(Iref_bak==0){
+		Iref = KEYLED_DEF_IREF;
+	}else{
+		Iref = Iref_bak;
+	}
+	keyled_set_iref(Iref);
+}
+
+
 // Write the color of the specified line
 void write_keyled(uint8_t row) {
 	uint8_t led_l[(MATRIX_COLS - MATRIX_COLS_SPLIT) * 3] = {};
@@ -157,6 +173,12 @@ void write_keyled(uint8_t row) {
 	PCA9956_pwm(RIGHT_LED_ADDR, 0, led_r, MATRIX_COLS_SPLIT * 3);
 }
 
+void alloff_keyled(uint8_t row) {
+
+	// Write to led driver
+	PCA9956_pwm_all(LEFT_LED_ADDR, 0);
+	PCA9956_pwm_all(RIGHT_LED_ADDR, 0);
+}
 
 // HSV to RGB convert
 void hsv2rgb(unsigned int  h, float s, float v, uint8_t *r, uint8_t *g, uint8_t *b) {

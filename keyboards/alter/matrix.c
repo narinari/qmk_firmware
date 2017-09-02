@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 #include <stdint.h>
 #include <stdbool.h>
 #if defined(__AVR__)
@@ -255,9 +255,15 @@ static bool read_cols_on_row(matrix_row_t current_matrix[], uint8_t current_row)
     // Clear data in matrix row
     current_matrix[current_row] = 0;
 
+    #ifdef KEYLED_ENABLE
+        //alloff_keyled(current_row);
+      	// Write color to current row
+      	write_keyled(current_row);
+    #endif
+
     // Select row and wait for row selecton to stabilize
     select_row(current_row);
-    wait_us(30);
+    wait_us(1000);
 
     // For each col...
     for(uint8_t col_index = 0; col_index < MATRIX_COLS-MATRIX_COLS_SPLIT; col_index++) {
@@ -271,11 +277,6 @@ static bool read_cols_on_row(matrix_row_t current_matrix[], uint8_t current_row)
     }
 
     current_matrix[current_row] |= (MCP23017_Read_A(RIGHT_IO_ADDR) << MATRIX_COLS_SPLIT);
-
-#ifdef KEYLED_ENABLE
-  	// Write color to current row
-  	write_keyled(current_row);
-#endif
 
     // Unselect row
     unselect_row(current_row);

@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define LEFT_LED_ADDR        0x3F
 #define RIGHT_LED_ADDR        0x3D
 // led iref
-#define KEYLED_DEF_IREF 20
+#define KEYLED_DEF_IREF 50
 #define KEYLED_CTRL_IREF 2
 #define KEYLED_MAX_IREF 100
 
@@ -37,7 +37,10 @@ void keyled_fillcheck_hsv(unsigned int h1, float s1, float v1, unsigned int h2, 
 void keyled_set_iref(uint8_t _iref);
 void keyled_up_iref(uint8_t val);
 void keyled_down_iref(uint8_t val);
+void keyled_off_iref(void);
+void keyled_on_iref(void);
 void write_keyled(uint8_t row);
+void alloff_keyled(uint8_t row);
 void hsv2rgb(unsigned int  h, float s, float v, uint8_t *r, uint8_t *g, uint8_t *b);
 
 
