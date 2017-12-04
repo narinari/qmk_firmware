@@ -39,7 +39,8 @@ enum custom_keycodes {
   ADJUST,
   BACKLIT,
   EISU,
-  KANA
+  KANA,
+  RGBRST
 };
 
 enum macro_keycodes {
@@ -175,7 +176,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_ADJUST] =  KEYMAP( \
-    _______, RESET  , RGB_TOG, RGB_MOD, RGB_HUD, RGB_HUI,          RGB_SAD, RGB_SAI, RGB_VAD, RGB_VAI, BACKLIT, KC_DEL, \
+    RESET,   RGBRST,  RGB_TOG, RGB_MOD, RGB_HUD, RGB_HUI,          RGB_SAD, RGB_SAI, RGB_VAD, RGB_VAI, BACKLIT, KC_DEL, \
     KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,            KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, \
     _______, _______, _______, AU_ON,   AU_OFF,  AG_NORM,          AG_SWAP, COLEMAK, QWERTY,  _______, _______, _______, \
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
@@ -449,6 +450,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+    case RGBRST:
+      if (record->event.pressed) {
+        eeconfig_update_rgblight_default();
+        //rgblight_mode(9);
+        rgblight_enable();
+        //rgblight_sethsv(0, 255, 255);
+        RGB_current_mode = rgblight_config.mode;
+      }
   }
   return true;
 }
