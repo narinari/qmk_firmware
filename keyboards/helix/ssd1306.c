@@ -211,10 +211,12 @@ bool iota_gfx_init(void) {
   send_cmd2(SetChargePump, 0x14 /* Enable */);
   send_cmd2(SetMemoryMode, 0 /* horizontal addressing */);
 
-/// Flips the display orientation 0 degrees
+/**
+// Flips the display orientation 0 degrees
   send_cmd1(SegRemap | 0x1);
   send_cmd1(ComScanDec);
-/*
+//*/
+/**/
 // the following Flip the display orientation 180 degrees
   send_cmd1(SegRemap);
   send_cmd1(ComScanInc);
