@@ -11,6 +11,7 @@
 #endif
 #ifdef SSD1306OLED
   #include "ssd1306.h"
+  #include "logo.h"
 #endif
 
 extern keymap_config_t keymap_config;
@@ -69,11 +70,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_QWERTY] = KEYMAP( \
-    KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS, \
-    KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
-    KC_ESC,  KC_BSPC, KC_LCTL, KC_LALT, KC_SPC,  KC_LGUI, LOWER,   RAISE, KC_RGUI, KC_ENT,  KC_RALT, KC_RCTL, KC_TAB,  KC_ESC, \
-    ADJUST,  LOWER,   LOWER,   LOWER,   LOWER,   LOWER,   LOWER,   RAISE, RAISE,   RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
+    KC_ESC,  KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,                            KC_Y,      KC_U,      KC_I,    KC_O,    KC_P,    KC_MINS, \
+    KC_LCTL, KC_A,      KC_S,      KC_D,      KC_F,      KC_G,                            KC_H,      KC_J,      KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
+    KC_LSFT, KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,                            KC_N,      KC_M,      KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
+    KC_ESC,  KC_BSPC,   KC_LCTL,   KC_LALT,   KC_LGUI,   KC_SPC,    KC_BSPC,   KC_TAB,    KC_ENT,    KC_RGUI,   KC_RALT, KC_RCTL, KC_TAB,  KC_ESC, \
+    ADJUST,  TT(LOWER), TT(LOWER), TT(LOWER), TT(LOWER), TT(LOWER), TT(LOWER), TT(RAISE), TT(RAISE), TT(RAISE), KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
     ),
 
   /* Colemak
@@ -90,11 +91,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_COLEMAK] = KEYMAP( \
-    KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,                    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_MINS, \
-    KC_LCTL, KC_A,    KC_R,    KC_S,    KC_T,    KC_D,                    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT, \
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
-    KC_ESC,  KC_BSPC, KC_LCTL, KC_LALT, KC_SPC,  KC_LGUI, LOWER,   RAISE, KC_RGUI, KC_ENT,  KC_RALT, KC_RCTL, KC_TAB,  KC_ESC, \
-    ADJUST,  LOWER,   LOWER,   LOWER,   LOWER,   LOWER,   LOWER,   RAISE, RAISE,   RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
+    KC_ESC,  KC_Q,      KC_W,      KC_F,      KC_P,      KC_G,                            KC_J,      KC_L,      KC_U,    KC_Y,    KC_SCLN, KC_MINS, \
+    KC_LCTL, KC_A,      KC_R,      KC_S,      KC_T,      KC_D,                            KC_H,      KC_N,      KC_E,    KC_I,    KC_O,    KC_QUOT, \
+    KC_LSFT, KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,                            KC_K,      KC_M,      KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT, \
+    KC_ESC,  KC_BSPC,   KC_LCTL,   KC_LALT,   KC_LGUI,   KC_SPC,    KC_BSPC,   KC_TAB,    KC_ENT,    KC_RGUI,   KC_RALT, KC_RCTL, KC_TAB,  KC_ESC, \
+    ADJUST,  TT(LOWER), TT(LOWER), TT(LOWER), TT(LOWER), TT(LOWER), TT(LOWER), TT(RAISE), TT(RAISE), TT(RAISE), KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
     ),
 
   /* Dvorak
@@ -111,12 +112,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_DVORAK] = KEYMAP( \
-      KC_TAB,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,                    KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_DEL, \
-      KC_LCTL, KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                    KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_SLSH, \
-      KC_LSFT, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,                    KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    KC_ENT , \
-      KC_ESC,  KC_BSPC, KC_LCTL, KC_LALT, KC_SPC,  KC_LGUI, LOWER,   RAISE, KC_RGUI, KC_ENT,  KC_RALT, KC_RCTL, KC_TAB,  KC_ESC, \
-      ADJUST,  LOWER,   LOWER,   LOWER,   LOWER,   LOWER,   LOWER,   RAISE, RAISE,   RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
-      ),
+    KC_ESC,  KC_QUOT,   KC_COMM,   KC_DOT,    KC_P,      KC_Y,                            KC_F,      KC_G,      KC_C,    KC_R,    KC_L,   KC_DEL, \
+    KC_LCTL, KC_A,      KC_O,      KC_E,      KC_U,      KC_I,                            KC_D,      KC_H,      KC_T,    KC_N,    KC_S,   KC_SLSH, \
+    KC_LSFT, KC_SCLN,   KC_Q,      KC_J,      KC_K,      KC_X,                            KC_B,      KC_M,      KC_W,    KC_V,    KC_Z,   KC_ENT , \
+    KC_ESC,  KC_BSPC,   KC_LCTL,   KC_LALT,   KC_LGUI,   KC_SPC,    KC_BSPC,   KC_TAB,    KC_ENT,    KC_RGUI,   KC_RALT, KC_RCTL, KC_TAB, KC_ESC, \
+    ADJUST,  TT(LOWER), TT(LOWER), TT(LOWER), TT(LOWER), TT(LOWER), TT(LOWER), TT(RAISE), TT(RAISE), TT(RAISE), KC_LEFT, KC_DOWN, KC_UP,  KC_RGHT \
+    ),
 
   /* Lower
    * ,-----------------------------------------.             ,-----------------------------------------.
@@ -153,10 +154,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_RAISE] = KEYMAP( \
-    _______, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_PIPE,                   KC_BSLS, KC_7,    KC_8,    KC_9,    KC_ASTR, KC_F12, \
-    _______, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,                    KC_AMPR, KC_4,    KC_5,    KC_6,    KC_PLUS, KC_PIPE, \
-    _______, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD,                   KC_EQL,  KC_1,    KC_2,    KC_3,    KC_MINS, _______, \
-    _______, _______, _______, _______, KC_BSPC, _______, _______, _______, _______, KC_0,    _______, KC_DOT,  KC_EQL,  _______, \
+    _______, KC_EXLM, KC_AT,   KC_LCBR, KC_RCBR, KC_PIPE,                   KC_BSLS, KC_7,    KC_8,    KC_9,    KC_ASTR, _______, \
+    _______, KC_HASH, KC_DLR,  KC_LPRN, KC_RPRN, KC_GRV,                    KC_EQL,  KC_4,    KC_5,    KC_6,    KC_PLUS, KC_PIPE, \
+    _______, KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD,                   KC_AMPR, KC_1,    KC_2,    KC_3,    KC_MINS, _______, \
+    _______, _______, _______, _______, _______, KC_BSPC, KC_DEL,  _______, _______, KC_0,    KC_COMM, KC_DOT,  KC_EQL,  _______, \
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
     ),
 
@@ -338,7 +339,8 @@ void matrix_master_OLED_init (void) {
 }
 
 void matrix_scan_user(void) {
-     iota_gfx_task();  // this is what updates the display continuously
+  logo_render();
+  // iota_gfx_task();  // this is what updates the display continuously
 }
 #endif
 
